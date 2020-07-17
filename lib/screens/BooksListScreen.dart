@@ -1,5 +1,6 @@
 import 'package:casa_do_codigo/data/api/BookApi.dart';
 import 'package:casa_do_codigo/models/Book.dart';
+import 'package:casa_do_codigo/screens/ErrorScreen.dart';
 import 'package:casa_do_codigo/screens/ListScreen.dart';
 import 'package:casa_do_codigo/screens/LoadingScreen.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +22,11 @@ class _BooksListScreenState extends State<BooksListScreen> {
       ),
       body: FutureBuilder<List<Book>>(
         future: books,
-        builder: ( context, snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListScreen(snapshot.data);
           } else if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error),
-            );
+            return ErrorScreen("${snapshot.error}");
           }
           return LoadingScreen();
         },

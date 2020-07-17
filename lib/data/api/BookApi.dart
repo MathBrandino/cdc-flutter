@@ -6,6 +6,7 @@ class BookApi {
   Future<List<Book>> fetchBooks() async {
     final response = await get(
         'https://cdcmob.herokuapp.com/listarLivros?qtdLivros=20&indicePrimeiroLivro=0');
-    return BookConverter.decode(response.body);
+    if (response.statusCode == 200) return BookConverter.decode(response.body);
+    throw Exception("Problem with connection");
   }
 }
