@@ -1,6 +1,7 @@
 import 'package:casa_do_codigo/data/api/BookApi.dart';
 import 'package:casa_do_codigo/models/Book.dart';
 import 'package:casa_do_codigo/screens/ListScreen.dart';
+import 'package:casa_do_codigo/screens/LoadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -28,19 +29,7 @@ class _BooksListScreenState extends State<BooksListScreen> {
               child: Text(snapshot.error),
             );
           }
-          return Center(
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('Loading items'),
-                  CircularProgressIndicator(),
-                ],
-              ),
-            ),
-          );
+          return LoadingScreen();
         },
       ),
     );
