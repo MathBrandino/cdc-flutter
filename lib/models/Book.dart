@@ -1,21 +1,21 @@
 class Book {
   final int id;
-  final String data;
-  final int paginas;
-  final String titulo;
-  final String imagem;
+  final String date;
+  final int numberOfPages;
+  final String name;
+  final String image;
 
-  Book(this.id, this.data, this.paginas, this.titulo, this.imagem);
+  Book(this.id, this.date, this.numberOfPages, this.name, this.image);
 
   Book.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        data = json['dataPublicacao'],
-        paginas = json['numeroPaginas'],
-        titulo = json['nomeLivro'],
-        imagem = json['imagemUrl'];
+        date = json['dataPublicacao'],
+        numberOfPages = json['numeroPaginas'],
+        name = json['nomeLivro'],
+        image = json['imagemUrl'];
 
   @override
   String toString() {
-    return 'Book{id: $id, data: $data, paginas: $paginas, titulo: $titulo, imagem: $imagem}';
+    return 'Book{id: $id, data: $date, paginas: $numberOfPages, titulo: $name, imagem: $image}';
   }
 }
