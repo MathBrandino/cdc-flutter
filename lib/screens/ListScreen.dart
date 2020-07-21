@@ -11,7 +11,12 @@ class ListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return BookItem(books[index]);
+        return BookItem(
+          books[index],
+          onItemClicked: (book) {
+            Navigator.pushNamed(context,"/book", arguments: book);
+          },
+        );
       },
       itemCount: books.length,
     );
@@ -20,22 +25,26 @@ class ListScreen extends StatelessWidget {
 
 class BookItem extends StatelessWidget {
   final Book book;
+  final Function(Book) onItemClicked;
 
-  BookItem(this.book);
+  BookItem(this.book, {this.onItemClicked});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        leading: Container(
-          height: 100,
-          child: Image.network(
-            book.imagem,
-            fit: BoxFit.fill,
-            errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+      child: InkWell(
+        onTap: () => onItemClicked(book),
+        child: ListTile(
+          leading: Container(
+            height: 100,
+            child: Image.network(
+              book.image,
+              fit: BoxFit.fill,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+            ),
           ),
+          title: Text(book.name),
         ),
-        title: Text(book.titulo),
       ),
     );
   }

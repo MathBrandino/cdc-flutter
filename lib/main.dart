@@ -1,3 +1,4 @@
+import 'package:casa_do_codigo/screens/BookDetailsScreen.dart';
 import 'package:casa_do_codigo/screens/BooksListScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,8 +28,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BooksListScreen(),
-
+      initialRoute: "/books",
+      routes: {
+        "/books" : (context) => BooksListScreen(),
+        "/book": (context) => BookDetailsScreen()
+      },
     );
   }
 }
